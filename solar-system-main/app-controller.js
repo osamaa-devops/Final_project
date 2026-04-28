@@ -1,7 +1,8 @@
-console.log('We are inside client.js');
+console.log('We are inside app-controller.js');
 
 function handleRequestError(message) {
-    throw new Error(message);
+    console.error('Error:', message);
+    alert(message);
 }
 
 /* on page load  */
@@ -16,21 +17,19 @@ window.onload = function() {
             if (res.ok) {
                 return res.json();
             }
-            handleRequestError('Request failed');
+            throw new Error('Failed to fetch pod information');
         }).catch(function(error) {
-            console.log(error);
+            console.log('Error fetching pod info:', error);
             return null;
         })
         .then(function(data) {
             if (!data) {
+                document.getElementById('hostname').innerHTML = `Connected to: Solar System Pod (local)`;
                 return;
             }
-            document.getElementById('hostname').innerHTML = `Pod - ${data.os} `
-          //  document.getElementById('environment').innerHTML = ` Env - ${data.env}  `
+            document.getElementById('hostname').innerHTML = `Pod: ${data.os} (${data.env || 'production'})`;
         });
 };
-
-
 
 const btn = document.getElementById('submit');
 if (btn) {
@@ -38,13 +37,19 @@ if (btn) {
 }
 
 function func() {
-    const planet_id = document.getElementById("planetID").value
+    const planet_id = document.getElementById("planetID").value;
+    
+    if (!planet_id || planet_id < 1 || planet_id > 8) {
+        handleRequestError('Please enter a number between 1 and 8');
+        return;
+    }
+    
     console.log("onClick Submit - Request Planet ID - " + planet_id)
 
     fetch("/planet", {
             method: "POST",
             body: JSON.stringify({
-                id: document.getElementById("planetID").value
+                id: planet_id
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -54,10 +59,13 @@ function func() {
             if (res2.ok) {
                 return res2.json();
             }
-            handleRequestError('Request failed.');
+            if (res2.status === 404) {
+                throw new Error('Planet not found. Please select a number between 1-8');
+            }
+            throw new Error('Request failed with status ' + res2.status);
         }).catch(function(error) {
-            alert("Ooops, We have 8 planets.\nSelect a number from 0 - 8")
-            console.log(error);
+            handleRequestError(error.message || 'Failed to fetch planet information');
+            console.error('Error:', error);
             return null;
         })
         .then(function(data) {
@@ -72,8 +80,7 @@ function func() {
 
             const planet_description = ` ${data.description} `
             document.getElementById('planetDescription').innerHTML = planet_description.replace(/(.{80})/g, "$1<br>");
-
-          
         });
 
 }
+

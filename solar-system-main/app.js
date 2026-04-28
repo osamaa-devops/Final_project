@@ -11,49 +11,49 @@ const fallbackPlanets = [
         id: 1,
         name: "Mercury",
         description: "Mercury is the smallest planet in our solar system and the closest planet to the Sun.",
-        image: "images/mercury.png"
+        image: "images/mercury.svg"
     },
     {
         id: 2,
         name: "Venus",
         description: "Venus spins slowly in the opposite direction from most planets and is the hottest planet in our solar system.",
-        image: "images/venus.png"
+        image: "images/venus.svg"
     },
     {
         id: 3,
         name: "Earth",
         description: "Earth is the only planet known to support life and has one natural satellite, the Moon.",
-        image: "images/earth.png"
+        image: "images/earth.svg"
     },
     {
         id: 4,
         name: "Mars",
         description: "Mars is known as the red planet and is home to the largest volcano in the solar system.",
-        image: "images/mars.png"
+        image: "images/mars.svg"
     },
     {
         id: 5,
         name: "Jupiter",
         description: "Jupiter is the largest planet in our solar system and is famous for the Great Red Spot.",
-        image: "images/jupiter.png"
+        image: "images/jupiter.svg"
     },
     {
         id: 6,
         name: "Saturn",
         description: "Saturn is best known for its spectacular rings made of ice and rock.",
-        image: "images/saturn.png"
+        image: "images/saturn.svg"
     },
     {
         id: 7,
         name: "Uranus",
         description: "Uranus rotates on its side, making it one of the most unusual planets in the solar system.",
-        image: "images/uranus.png"
+        image: "images/uranus.svg"
     },
     {
         id: 8,
         name: "Neptune",
         description: "Neptune is a cold and windy ice giant that orbits far from the Sun.",
-        image: "images/neptune.png"
+        image: "images/neptune.svg"
     }
 ];
 

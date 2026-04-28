@@ -1,13 +1,48 @@
+# Dependencies
 node_modules
-solar-system.png
-.nyc_output
-.talismanrc
-coverage
+package-lock.json
+yarn.lock
+
+# Test Coverage
+coverage/
+.nyc_output/
 test-results.xml
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+local-server.out.log
+local-server.err.log
+
+# Terraform
 .terraform/
+.terraform.lock.hcl
 terraform.tfstate
 terraform.tfstate.*
 *.tfvars
 !terraform.tfvars.example
-local-server.out.log
-local-server.err.log
+
+# Build
+dist/
+build/
+
+# Temporary
+*.tmp
+.cache/
+.talismanrc
+solar-system.png
