@@ -5,18 +5,38 @@
 
 ## 1️⃣ إعداد MongoDB
 
-### Option A: استخدام MongoDB Atlas (موصى به للإنتاج)
+### Option A: استخدام MongoDB Atlas (موصى به للإنتاج) ✅
 
-- انشئ حساب على [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-- أنشئ cluster جديد
-- احصل على connection string
-- أنشئ user و password للوصول
-- احفظ البيانات في متغيرات البيئة:
-  ```bash
-  MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/solar-system
-  MONGO_USERNAME=your-username
-  MONGO_PASSWORD=your-password
-  ```
+المشروع **متصل بـ MongoDB Atlas** بالفعل:
+
+**الـ Cluster:**
+- Cluster Name: `my-cluster`
+- User: `osamareda170_db`
+- Database: `solar-system` (سيُنشأ تلقائياً عند الاتصال الأول)
+
+**الخطوات:**
+1. احفظ البيانات في `.env` ملف (نموذج موجود):
+   ```bash
+   MONGO_URI=mongodb+srv://osamareda170_db:PASSWORD@my-cluster.elbbxlw.mongodb.net/solar-system?retryWrites=true&w=majority
+   MONGO_USERNAME=osamareda170_db
+   MONGO_PASSWORD=PASSWORD
+   ```
+
+2. ⚠️ **تنبيه أمان:** لا تضع الـ password في الكود
+   - استخدم `.env` ملف محلياً فقط
+   - في CI/CD استخدم GitLab Variables
+   - لا تنشر `.env` في repo
+
+3. تشغيل التطبيق:
+   ```bash
+   npm start
+   ```
+
+4. اختبار الاتصال:
+   ```bash
+   curl http://localhost:3000/ready
+   ```
+   يجب ترد: `{"status": "ready"}`
 
 ### Option B: استخدام MongoDB محلي (للتطوير)
 
